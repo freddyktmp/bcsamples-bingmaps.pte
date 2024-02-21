@@ -327,6 +327,9 @@ jobs:
     if: ${{ github.event.inputs.updateVersionNumber!='' }}
     runs-on: [ ubuntu-latest ]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Read settings
         uses: freddydk/AL-Go/Actions/ReadSettings@PPP
         with:
