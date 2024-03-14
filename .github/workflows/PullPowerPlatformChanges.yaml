@@ -93,7 +93,6 @@ jobs:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
           shell: pwsh
-          actionsRepo: 'freddydk/AL-Go/Actions@PPP'
           token: ${{ steps.ReadSecrets.outputs.TokenForPush }}
           directCommit: ${{ inputs.directCommit }}
           environmentName: ${{ inputs.environment }}
