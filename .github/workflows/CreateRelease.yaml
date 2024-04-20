@@ -91,7 +91,7 @@ jobs:
         uses: freddydk/AL-Go/Actions/ReadSettings@PPP
         with:
           shell: pwsh
-          get: templateUrl,repoName
+          get: templateUrl,repoName,type,powerPlatformSolutionFolder
 
       - name: Read secrets
         id: ReadSecrets
@@ -124,6 +124,11 @@ jobs:
           $projects = '${{ steps.determineProjects.outputs.ProjectsJson }}' | ConvertFrom-Json
           Write-Host "projects:"
           $projects | ForEach-Object { Write-Host "- $_" }
+          if ($env:type -eq "PTE" -and $env:powerPlatformSolutionFolder -ne "") {
+            Write-Host "PowerPlatformSolution:"
+            Write-Host "- $($env:powerPlatformSolutionFolder)"
+            $projects += @($env:powerPlatformSolutionFolder)
+          }
           $include = @()
           $sha = ''
           $allArtifacts = @()
